@@ -43,7 +43,7 @@ function initChatbot() {
 
 // Show welcome message
 function showWelcomeMessage() {
-    const welcomeMessage = "Hello! 👋 I'm the MKU Student Assistant. How can I help you today? You can ask about finance, administrative services, or academics.";
+    const welcomeMessage = "Hello! I'm the MKU Student Assistant. How can I help you today? You can ask about finance, administrative , or academics services.";
     appendMessage('bot', welcomeMessage);
     showQuickReplies(getContextOptions(null));
 }
@@ -264,7 +264,7 @@ function generateResponse(message) {
         // Finance context
         if (lowerMessage.includes('payment confirmation') || lowerMessage.includes('receipt issues')) {
             return {
-                text: "For payment confirmation or receipt issues:\n\n• Check your student portal under 'Finance'\n• Email finance@mku.ac.ke with your registration number\n• Visit Finance Office at Main Campus with transaction details\n• SMS 'RECEIPT <REGNO>' to 40440\n\nReceipts are usually generated within 2 hours of payment.",
+                text: "For payment confirmation or receipt issues:\n\n• Check your student portal under 'Finance'\n• Email finance@mku.ac.ke with your registration number\n• Visit Finance Office at Main Campus with transaction details\n\nReceipts are usually generated within 2 hours of payment.",
                 context: 'finance',
                 subContext: 'payment'
             };
@@ -280,7 +280,7 @@ function generateResponse(message) {
         
         if (lowerMessage.includes('fee balance')) {
             return {
-                text: "To check your fee balance:\n\n1. Student Portal → Finance Section → Fee Statement\n2. SMS 'BAL <REGNO>' to 40440 (Ksh 5 charge)\n3. Visit Finance Office at Main Campus\n\nYour balance is updated in real-time as payments are processed.",
+                text: "To check your fee balance:\n\n1. Student Portal → Finance Section → Fee Statement\n3. Visit Finance Office at Main Campus\n\nYour balance is updated in real-time as payments are processed.",
                 context: 'finance'
             };
         }
@@ -294,7 +294,7 @@ function generateResponse(message) {
         
         if (lowerMessage.includes('installment plans')) {
             return {
-                text: "Installment Payment Plans:\n\n• Minimum 50% payment required at registration\n• Remaining balance payable in monthly installments\n• Administration fee: Ksh 2,000\n• Apply online at finance.mku.ac.ke/installments\n• Approval within 48 hours\n\nLate installment payments incur a Ksh 500 penalty.",
+                text: "Installment Payment Plans:\n\n• Minimum 60% payment required before begining of CATS\n• Remaining balance payable in monthly installments before exams\n\nLate installment payments leads to block from accessing the schools.",
                 context: 'finance',
                 subContext: 'deadlines'
             };
@@ -310,7 +310,7 @@ function generateResponse(message) {
         
         if (lowerMessage.includes('extension request')) {
             return {
-                text: "Fee Payment Extension:\n\n• Maximum 14-day extension possible\n• Requires formal written request\n• Submit to department head for endorsement\n• Then to Finance Office for approval\n• Email: finance@mku.ac.ke\n\nExtensions are only granted in exceptional circumstances.",
+                text: "Fee Payment Extension:\n\n• Maximum 14-day extension possible\n• Requires formal written request\n• Submit to department head and Dean for endorsement\n• Then to Finance Office for approval\n• Email: finance@mku.ac.ke\n\nExtensions are only granted in exceptional circumstances.",
                 context: 'finance',
                 subContext: 'deadlines'
             };
@@ -319,7 +319,7 @@ function generateResponse(message) {
         if (lowerMessage.includes('how can i know my fees') || lowerMessage.includes('check my fees')) {
             currentContext = 'finance';
             return {
-                text: "You can check your fees balance through:\n\n1. Student Portal → Finance Section\n2. SMS 'BAL <REGNO>' to 40440 (Ksh 5 charge)\n3. Visit the Finance Office at Main Campus\n\nFor detailed fee statements, log in to your student portal.",
+                text: "You can check your fees balance through:\n\n1. Student Portal → Finance Section\n2. Visit the Finance Office at Main Campus\n\nFor detailed fee statements, log in to your student portal.",
                 context: 'finance'
             };
         }
@@ -327,9 +327,9 @@ function generateResponse(message) {
         if (lowerMessage.includes('payment') || lowerMessage.includes('method') || 
             lowerMessage.includes('mpesa') || lowerMessage.includes('bank')) {
             const responses = [
-                " Payment Methods Details:\n\n• MPesa: Paybill 404040, Account: Student Registration Number\n  - Transaction limit: Ksh 150,000 per day\n  - Processing time: Instant (portal updates within 2hrs)\n• Bank Deposit: \n  - Equity Bank: Acc No. 0780263456007\n  - KCB: Acc No. 1145889300\n  - Use registration number as reference\n• Online Portal: \n  - Visa/Mastercard (2.9% processing fee)\n  - Mobile Banking: Select 'MKU Fees' option\n\nℹ️ Always get receipt confirmation SMS within 24hrs",
-                " Digital Payment Options:\n\n• MPesa: \n  - Paybill: 404040\n  - Account: Student registration number\n  - Daily limit: Ksh 150,000\n• Bank Transfer: \n  - Equity: 0780263456007\n  - KCB: 1145889300\n  - Reference: Registration number\n• Card Payments: \n  - 2.9% processing fee applies\n  - Accepted worldwide\n\nProcessing time: 1-2 hours during business days",
-                " Banking & Payment Procedures:\n\n1. MPesa: \n   - Paybill: 404040\n   - Account: Registration number\n   - Max: Ksh 150,000/day\n2. Bank: \n   - Deposit at Equity or KCB\n   - Account numbers listed on portal\n3. Online: \n   - Secure gateway with Visa/Mastercard\n   - Mobile banking integration\n\nAlways keep transaction ID until payment appears in portal"
+                " Payment Methods Details:\n\n• MPesa: Paybill 404040, Account: Student Registration Number\n  - Processing time: Instant (portal updates within 2hrs)\n• Bank Deposit: \n  - Equity Bank: Acc No. 0780263456007\n  - KCB: Acc No. 1145889300\n  - Use registration number as reference\n• Online Portal: \n  - Visa/Mastercard (2.9% processing fee)\n  - Mobile Banking: Select 'MKU Fees' option\n\n Always get receipt confirmation SMS within 24hrs",
+                " Digital Payment Options:\n\n• MPesa: \n  - Paybill: 404040\n  - Account: Student registration number\n  • Bank Transfer: \n  - Equity: 0780263456007\n  - KCB: 1145889300\n  - Reference: Registration number\n• Card Payments: \n  - 2.9% processing fee applies\n  - Accepted worldwide\n\nProcessing time: 1-2 hours during business days",
+                " Banking & Payment Procedures:\n\n1. MPesa: \n   - Paybill: 404040\n   - Account: Registration number\n   2. Bank: \n   - Deposit at Equity or KCB\n   - Account numbers listed on portal\n3. Online: \n   - Secure gateway with Visa/Mastercard\n   - Mobile banking integration\n\nAlways keep transaction ID until payment appears in portal"
             ];
             return {
                 text: getRotatedResponse('finance', 'payment', responses),
@@ -341,9 +341,7 @@ function generateResponse(message) {
         if (lowerMessage.includes('deadline') || lowerMessage.includes('due date') || 
             lowerMessage.includes('late')) {
             const responses = [
-                " Fee Deadlines & Penalties:\n\n• Semester 1: August 31st\n• Semester 2: January 31st\n• Late Payment Penalties:\n  - 1-7 days late: Ksh 500\n  - 8-14 days late: Ksh 1,000\n  - After 15 days: Course deregistration\n• Installment Plans:\n  - 50% by deadline + 25% monthly (admin fee Ksh 2,000)\n  - Apply at finance.mku.ac.ke/installments\n\n⚠️ Exam access requires 75% fee payment",
-                " Fee Payment Schedule:\n\n• Semester 1 Deadline: August 31\n• Semester 2 Deadline: January 31\n• Consequences of Late Payment:\n  - Ksh 500 penalty (1-7 days)\n  - Ksh 1,000 penalty (8-14 days)\n  - Course deregistration after 15 days\n• Installment Options:\n  - Minimum 50% down payment\n  - Balance in monthly installments\n  - Ksh 2,000 administration fee",
-                " Important Fee Deadlines:\n\n• Full Payment Due:\n  - Semester 1: August 31\n  - Semester 2: January 31\n• Late Fees:\n  - Week 1: Ksh 500\n  - Week 2: Ksh 1,000\n  - After 2 weeks: Deregistration risk\n• Payment Plans:\n  - Available with 50% initial payment\n  - Monthly installments with Ksh 2,000 fee\n\nNote: 75% payment required for exam access"
+               "Fee deadlines makes one face gate restrictions and denial of other school services"
             ];
             return {
                 text: getRotatedResponse('finance', 'deadlines', responses),
@@ -371,7 +369,7 @@ function generateResponse(message) {
         
         if (lowerMessage.includes('registration issues')) {
             return {
-                text: "Registration Issues Assistance:\n\n• Late registration: Ksh 500 penalty fee\n• Course conflicts: Contact your department coordinator\n• System errors: Email portal@mku.ac.ke with screenshot\n• In-person help: ICT Office, Main Campus\n\nRegistration issues must be resolved within 14 days of semester start.",
+                text: "Registration Issues Assistance:\n\n• Course conflicts: Contact your department coordinator\n• System errors: Email portal@mku.ac.ke with screenshot\n• In-person help: ICT Office, Main Campus\n\nRegistration issues must be resolved within 14 days of semester start.",
                 context: 'administrative',
                 subContext: 'registrar'
             };
@@ -402,7 +400,7 @@ function generateResponse(message) {
         if (lowerMessage.includes('replace lost student id') || lowerMessage.includes('lost id card')) {
             currentContext = 'administrative';
             return {
-                text: "To replace a lost student ID:\n\n1. Report to Security Office\n2. Obtain replacement form from Registrar\n3. Pay Ksh 1,000 at Finance Office\n4. Submit form with payment receipt\n\nNew ID will be ready in 3-5 working days.",
+                text: "To replace a lost student ID:\n\n1. Report to Security Office\n2. Obtain replacement form from Registrar\n3. Pay Ksh 500 at Finance Office\n4. Submit form with payment receipt\n\nNew ID will be ready in 3-5 working days.",
                 context: 'administrative'
             };
         }
@@ -424,7 +422,7 @@ function generateResponse(message) {
         // Academics context
         if (lowerMessage.includes('missing results')) {
             return {
-                text: "Missing Examination Results:\n\n• Report to your department coordinator immediately\n• Submit Form RE/02 (Available at Exam Office)\n• Provide details: Course code, semester, exam date\n• Processing time: 7-14 working days\n• Email: exams@mku.ac.ke with your details\n\nMissing results are usually resolved within 2 weeks of reporting.",
+                text: "Missing Examination Results:\n\n• Report to your department coordinator immediately\n• Submit Form RE/02 (Available at Exam Office)\n• Provide details: Course code, semester, exam date\n• Processing time: 7-14 working days\n• Email: exams@mku.ac.ke with your details\n\nMissing results are usually resolved instantly or within 2 weeks of reporting.",
                 context: 'academics',
                 subContext: 'access'
             };
@@ -440,7 +438,7 @@ function generateResponse(message) {
         
         if (lowerMessage.includes('release schedule')) {
             return {
-                text: "Examination Results Release Schedule:\n\n• Regular Exams: 4 weeks after exam period ends\n• Supplementary Exams: 6 weeks after exam period\n• Special Exams: 8 weeks after exam period\n• Project/Thesis: 12 weeks after submission\n\nResults are released on Fridays at 2:00 PM typically.",
+                text: "Examination Results Release Schedule:\n\n• Regular Exams: 4 weeks after exam period ends\n• Supplementary Exams: 4 weeks after exam period\n• Special Exams: 4 weeks after exam period\n• Project/Thesis: 1 month after submission\n.",
                 context: 'academics',
                 subContext: 'access'
             };
